@@ -1,4 +1,5 @@
 #include <stdio.h>
+
 /**
  * main - print each argument passed to program on a line
  * @argc: argument counter
@@ -10,8 +11,8 @@ int main(int argc, char *argv[])
 {
 	int i = 0;
 
-	(void)argc;
-	printf("%s\n", argv[i++]);
+	while (i < argc)
+		printf("%s\n", argv[i++]);
 
 	return (0);
 }
