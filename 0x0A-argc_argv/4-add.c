@@ -1,49 +1,40 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<ctype.h>
 
 /**
- * is_num - iterate through each argv to test if it's a number
- * @argvv: a argv
- * Return: true only if entire string is a number, false if not
+ * main - Print the name of the program
+ * @argc: Count arguments
+ * @argv: Arguments
+ *
+ * Return: Always 0 (Success)
  */
-bool is_num(char *argvv)
-{
-	int j = 0;
-
-	for (j = 0; argvv[j]; j++)
-	{
-		if (!(argvv[j] >= '0' && argvv[j] <= '9'))
-			return (0);
-	}
-	return (1);
-}
-
 int main(int argc, char *argv[])
 {
-	int i = 1;
-	int sum = 0;
+	int i;
+	int len;
 
-	/* validate input */
-	if (argc == 1)
+	len = 0;
+	if (argc > 1)
 	{
-		printf("0\n");
+		for (i = 1; i < argc; i++)
+		{
+			if (!isdigit(argv[i][0]))
+			{
+				printf("Error\n");
+				return (1);
+			}
+		}
+		for (i = 1; i < argc; i++)
+		{
+			len += atoi(argv[i]);
+		}
+		printf("%d\n", len);
 		return (0);
 	}
-
-	/* check all arguments to add numbers */
-	while (i < argc)
+	else
 	{
-		if (is_num(argv[i]))
-			sum += atoi(argv[i]);
-		else
-		{
-			printf("Error\n");
-			return (1);
-		}
-		i++;
+		printf("%d\n", 0);
+		return (0);
 	}
-	printf("%d\n", sum);
-
-	return (0);
 }
